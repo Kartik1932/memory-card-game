@@ -14,10 +14,16 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        h1{
+            margin-bottom: 20px;
+        }
+
         .game-board{
             display: grid;
             grid-template-columns: repeat(4, 100px);
             gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
         }
 
         .card{
@@ -28,10 +34,38 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+            border-radius: 8px;
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+
+        .card.flipped {
+            background: #fff;
+            color: #000;
+            cursor: default;
+        }
+
+        .card.matched{
+            background: #ccc;
+            color: #000;
+            cursor: default;
+        }
+
+        #winMessage{
+            margin-top: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2e7d32;
+            display: none;
         }
     </style>
 </head>
 <body>
-    
+    <div class="game-board" id="gameBoard"></div>
+    <div id="winMessage">🎉 You Win! 🎉</div>
+    <script src="script.js"></script>
 </body>
 </html>
