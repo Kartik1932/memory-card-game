@@ -1,26 +1,38 @@
 const board = document.querySelector(".game-board");
 const winMessage = document.getElementById("winMessage")
+const restartBtn = document.getElementById("restartBtn");
 
-const emojis = ["🍎","🍌","🍓","🍇","🍉","🍍","🥑","🍒"];
-let cards = [...emojis, ...emojis];
+const symbols = ["🍎","🍌","🍓","🍇","🍉","🍍","🥑","🍒"];
+const totalPairs = symbols.length;
 
-cards.sort(()=>Math.random() - 0.5);
 
-// const gameBoard = document.getElementById("gameBoard");
-let firstCard = null;
-let secondCard = null;
+function shuffle(array)
+{
+    return array.sort(()=>Math.random() - 0.5);
+}
+
+let firstCard, secondCard;
 let lockBoard = false;
 let matchedPairs = 0;
-const totalPairs = emojis.length;
 
-cards.forEach(emoji => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    card.dataset.emoji = emoji;
-    card.innerText = "";
-    card.addEventListener("click", flipCard);
-    board.appendChild(card);
+function createBoard() {
+    board.innerHTML = "";
+    winMessage.style.display = "none";
+    matchedPairs = 0;
+    [firstCard, secondCard] = [null, null];
+    lockBoard = false;
+
+    let cards = shuffle([...symbols, ...symbols]);
+    cards.forEach(emoji => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.emoji = emoji;
+        card.innerText = "";
+        card.addEventListener("click", flipCard);
+        board.appendChild(card);
 })
+
+}
 
 function flipCard() {
     if(lockBoard) return;
@@ -64,3 +76,7 @@ function resetTurn() {
     [firstCard, secondCard] = [null, null];
     lockBoard = false;
 }
+
+restartBtn.addEventListener("click", createBoard);
+
+createBoard();

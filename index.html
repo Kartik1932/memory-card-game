@@ -61,11 +61,27 @@
             color: #2e7d32;
             display: none;
         }
+        
+        #restartBtn{
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #restartBtn:hover {
+            background: #1976D2;
+        }
     </style>
 </head>
 <body>
     <div class="game-board" id="gameBoard"></div>
     <div id="winMessage">🎉 You Win! 🎉</div>
+    <button id="restartBtn">Restart</button>
     <script src="script.js"></script>
 </body>
 </html>
